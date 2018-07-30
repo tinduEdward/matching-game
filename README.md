@@ -1,20 +1,34 @@
-# Memory Game Project
+# Memory Matching Game
 
-## Table of Contents
+A simple game to test your memory if you can remember what cards were flipped open
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## Getting Started
 
-## Instructions
+Just extract the code base and run the index.html on any browser.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+### Prerequisites
 
-To get started, open `js/app.js` and start building out the app's functionality
+All you need is just the browser
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
-## Contributing
+### Installing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+The source code to download is available in the below git repository. Just download it into your local and run the index.html
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+```
+https://github.com/tinduEdward/matching-game
+```
+
+## Built With
+
+* [Font Awesome](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css) - 
+
+## Authors
+
+* *Derlin Kulandai Raj** - *Initial work* - [tinduEdward](https://github.com/tinduEdward/matching-game)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

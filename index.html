@@ -3,11 +3,15 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Matching Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 450px)" href="css/small.css">
+    <link rel="stylesheet" type="text/css" media="only screen and (min-width: 451px) and (max-width: 800px)" href="css/medium.css">
+    <link rel="stylesheet" type="text/css" media="only screen and (min-width: 801px)" href="css/large.css">
 </head>
 
 <body>
@@ -17,24 +21,22 @@
             <h1>Matching Game</h1>
         </header>
 
-        <section class="score-panel">
+        <section class="score-panel" id="score-panel-id">
             <ul class="stars" id="stars_ul">
                 <li><i class="fa fa-star"></i></li>
                 <li><i class="fa fa-star"></i></li>
                 <li><i class="fa fa-star"></i></li>
             </ul>
-
             <span class="moves" id="moves">3</span> Moves
-
-            <div class="restart" id="restart-option">
-                <i class="fa fa-repeat"></i>
-            </div>
-
             <div>
                 <i class="fa fa-clock-o"></i>
                 <span class="timer" id="timer-option"></span>
             </div>
         </section>
+
+        <div class="restart" id="restart-option">
+            <i class="fa fa-repeat"></i>
+        </div>
 
         <ul class="deck" id="main-deck">
             <li class="card">
@@ -92,11 +94,12 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <div>
-                You took <p id="time-taken">0</p> seconds 
+                You Stats:
+            </div>
+            <div id="star_model">
             </div>
             <button class="close" id="play-again">Play Again</button>
         </div>
-
     </div>
 
 

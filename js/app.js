@@ -10,7 +10,7 @@
  *   - add each card's HTML to the page
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle function 
 function shuffle(array_list) {
     var currentIndex = array_list.length,
         temporaryValue, randomIndex;
@@ -23,7 +23,7 @@ function shuffle(array_list) {
         array_list[randomIndex].querySelector("i").classList[1] = temporaryValue.querySelector("i").classList[1];
     }
     return array_list;
-}
+};
 
 // let deck_parent = document.getElementById("main-deck");
 
@@ -31,130 +31,143 @@ function shuffle(array_list) {
 let card = document.getElementsByClassName("card");
 let restart_element = document.getElementById("restart-option");
 let play_again_button = document.getElementById("play-again");
-let time_taken_label = document.getElementById("time-taken");
 let modal = document.getElementById('success-modal');
 let span = document.getElementsByClassName("close")[0];
-let cards = [...card]
-var total_moves = 0
-var total_success_moves = 0
-document.getElementById("moves").textContent = total_moves
-var timer = document.getElementById("timer-option")
-var time_taken = 0
-timer.textContent = "00:00:00"
+let cards = [...card];
+var total_moves = 0;
+let total_clics = 0;
+var total_success_moves = 0;
+document.getElementById("moves").textContent = total_moves;
+var timer = document.getElementById("timer-option");
+var time_taken = 0;
+timer.textContent = "00:00:00";
 var shuffeledDeck = shuffle(cards);
-let previous_child = null
+let previous_child = null;
+let date = new Date(null);
 
+var set_interval_timer = null;
+//functions for open model and start timer and reset timer etc...
 span.onclick = function () {
     modal.style.display = "none";
-}
+};
 
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+};
 
-play_again_button.addEventListener('click', function() {
-    reset_fn()
+play_again_button.addEventListener('click', function () {
+    reset_fn();
     modal.style.display = "none";
-})
+});
 
 var openModal = function () {
     modal.style.display = "block";
-    time_taken_label.innerHTML = time_taken
-}
+    clearInterval(set_interval_timer);
+    var ul_star = document.getElementById("score-panel-id").outerHTML;
+    var d_star = document.getElementById("star_model");
+    d_star.innerHTML = ul_star;
+};
 
-var set_interval_timer = setInterval(function () {
-    time_taken += 1
-    var date = new Date(null);
+var timer_fn = function () {
+    time_taken += 1;
     date.setSeconds(time_taken);
     var timeString = date.toISOString().substr(11, 8);
-    timer.textContent = timeString
-}, 1000)
+    timer.textContent = timeString;
+};
+
 
 let reset_fn = function () {
     shuffeledDeck = shuffle(cards);
     shuffeledDeck.forEach(function (each_card) {
         if (each_card.classList[1]) {
-            each_card.classList.remove("match")
+            each_card.classList.remove("match");
         }
-    })
-    setStar(1, 1)
-    total_moves = 0
-    total_success_moves = 0
-    document.getElementById("moves").textContent = total_moves
-    previous_child = null
-    time_taken = 0
-}
+    });
+    setStar(1, 1);
+    clearInterval(set_interval_timer);
+    total_moves = 0;
+    total_success_moves = 0;
+    document.getElementById("moves").textContent = total_moves;
+    previous_child = null;
+    time_taken = 0;
+    date.setSeconds(time_taken);
+    var timeString = date.toISOString().substr(11, 8);
+    timer.textContent = timeString;
+    total_clics = 0;
+};
 
 restart_element.addEventListener('click', function () {
-    reset_fn()
-})
-
+    reset_fn();
+});
+//fuction for setting star based on the user performence
 var setStar = function (t_success, t_moves) {
-    success_percent = Math.floor((t_success * 100) / t_moves)
-    console.log(success_percent)
     var ul = document.getElementById("stars_ul");
-    ul.innerHTML = ""
-    if (success_percent <= 33) {
+    ul.innerHTML = "";
+    if (t_moves > 10) {
         var li = document.createElement("li");
         var i_star = document.createElement("i")
-        i_star.className = "fa fa-star"
+        i_star.className = "fa fa-star";
         li.appendChild(i_star);
         ul.appendChild(li);
 
         var li = document.createElement("li");
         var i_star = document.createElement("i")
+        i_star.className = "fa fa-star-o";
+        li.appendChild(i_star);
+        ul.appendChild(li);
+
+        var li = document.createElement("li");
+        var i_star = document.createElement("i");
         i_star.className = "fa fa-star-o"
         li.appendChild(i_star);
         ul.appendChild(li);
-
+    } else if (t_moves > 5) {
         var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star-o"
-        li.appendChild(i_star);
-        ul.appendChild(li);
-    } else if (success_percent <= 67) {
-        var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star"
+        var i_star = document.createElement("i");
+        i_star.className = "fa fa-star";
         li.appendChild(i_star);
         ul.appendChild(li);
 
         var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star"
+        var i_star = document.createElement("i");
+        i_star.className = "fa fa-star";
         li.appendChild(i_star);
         ul.appendChild(li);
 
         var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star-o"
+        var i_star = document.createElement("i");
+        i_star.className = "fa fa-star-o";
         li.appendChild(i_star);
         ul.appendChild(li);
     } else {
         var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star"
+        var i_star = document.createElement("i");
+        i_star.className = "fa fa-star";
         li.appendChild(i_star);
         ul.appendChild(li);
 
         var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star"
+        var i_star = document.createElement("i");
+        i_star.className = "fa fa-star";
         li.appendChild(i_star);
         ul.appendChild(li);
 
         var li = document.createElement("li");
-        var i_star = document.createElement("i")
-        i_star.className = "fa fa-star"
+        var i_star = document.createElement("i");
+        i_star.className = "fa fa-star";
         li.appendChild(i_star);
         ul.appendChild(li);
     }
-}
-
+};
+//checking and matching cards
 shuffeledDeck.forEach(function (each_child) {
     each_child.addEventListener('click', function () {
+        total_clics++;
+        if (total_clics == 1) {
+            set_interval_timer = setInterval(timer_fn, 1000);
+        }
         let current_child = each_child;
         if (current_child.classList.contains("match")) {
             return;
@@ -167,11 +180,11 @@ shuffeledDeck.forEach(function (each_child) {
             current_child.classList.add("match");
             previous_child = null;
             total_moves += 1;
-            total_success_moves += 1
+            total_success_moves += 1;
+            document.getElementById("moves").textContent = total_moves;
             setStar(total_success_moves, total_moves);
             if (total_success_moves >= 8) {
-                console.log("All done")
-                openModal()
+                openModal();
             }
         } else if (previous_child.querySelector("i").classList[1] != current_child.querySelector("i").classList[1]) {
             current_child.classList.add("match");
@@ -181,9 +194,9 @@ shuffeledDeck.forEach(function (each_child) {
                 previous_child = null;
             }, 300)
             total_moves += 1;
+            document.getElementById("moves").textContent = total_moves;
             setStar(total_success_moves, total_moves);
         }
-        document.getElementById("moves").textContent = total_moves;
     });
 
 
